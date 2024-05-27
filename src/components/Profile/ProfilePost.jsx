@@ -39,7 +39,7 @@ const ProfilePost = ({ post }) => {
 	const decrementPostsCount = useUserProfileStore((state) => state.deletePost);
 
 	const handleDeletePost = async () => {
-		if (!window.confirm("Are you sure you want to delete this post?")) return;
+		if (!window.confirm("Ви впевнені, що хочете видалити цю публікацію?")) return;
 		if (isDeleting) return;
 
 		try {
@@ -54,9 +54,9 @@ const ProfilePost = ({ post }) => {
 
 			deletePost(post.id);
 			decrementPostsCount(post.id);
-			showToast("Success", "Post deleted successfully", "success");
+			showToast("Успіх", "Публікацію успішно видалено", "success");
 		} catch (error) {
-			showToast("Error", error.message, "error");
+			showToast("Помилка", error.message, "error");
 		} finally {
 			setIsDeleting(false);
 		}
@@ -133,7 +133,7 @@ const ProfilePost = ({ post }) => {
 							<Flex flex={1} flexDir={"column"} px={10} display={{ base: "none", md: "flex" }}>
 								<Flex alignItems={"center"} justifyContent={"space-between"}>
 									<Flex alignItems={"center"} gap={4}>
-										<Avatar src={userProfile.profilePicURL} size={"sm"} name='As a Programmer' />
+										<Avatar src={userProfile.profilePicURL} size={"sm"} name='name' />
 										<Text fontWeight={"bold"} fontSize={12}>
 											{userProfile.username}
 										</Text>
@@ -156,9 +156,9 @@ const ProfilePost = ({ post }) => {
 								<Divider my={4} bg={"gray.500"} />
 
 								<VStack w='full' alignItems={"start"} maxH={"350px"} overflowY={"auto"}>
-									{/* CAPTION */}
+									{/* НАДПИС */}
 									{post.caption && <Caption post={post} />}
-									{/* COMMENTS */}
+									{/* КОМЕНТАРІ */}
 									{post.comments.map((comment) => (
 										<Comment key={comment.id} comment={comment} />
 									))}

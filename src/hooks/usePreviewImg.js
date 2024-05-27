@@ -10,7 +10,7 @@ const usePreviewImg = () => {
 		const file = e.target.files[0];
 		if (file && file.type.startsWith("image/")) {
 			if (file.size > maxFileSizeInBytes) {
-				showToast("Error", "File size must be less than 2MB", "error");
+				showToast("Помилка", "Розмір файлу має бути менше 2 Мб", "error");
 				setSelectedFile(null);
 				return;
 			}
@@ -22,7 +22,7 @@ const usePreviewImg = () => {
 
 			reader.readAsDataURL(file);
 		} else {
-			showToast("Error", "Please select an image file", "error");
+			showToast("Помилка", "Виберіть файл зображення", "error");
 			setSelectedFile(null);
 		}
 	};

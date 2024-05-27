@@ -4,7 +4,7 @@ import { useCallback } from "react";
 const useShowToast = () => {
 	const toast = useToast();
 
-	// useCallback is used to prevent infinite loop, by  caching the function
+	// useCallback використовується для запобігання нескінченному циклу шляхом кешування функції
 	const showToast = useCallback(
 		(title, description, status) => {
 			toast({

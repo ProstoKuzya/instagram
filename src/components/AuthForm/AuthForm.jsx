@@ -24,17 +24,17 @@ const AuthForm = () => {
 						<Box flex={2} h={"1px"} bg={"gray.400"} />
 					</Flex>
 
-					<GoogleAuth prefix={isLogin ? "Log in" : "Sign up"} />
+					<GoogleAuth prefix={isLogin ? "Авторизуватися" : "Зареєструватися"} />
 				</VStack>
 			</Box>
 
 			<Box border={"1px solid gray"} borderRadius={4} padding={5}>
 				<Flex alignItems={"center"} justifyContent={"center"}>
 					<Box mx={2} fontSize={14}>
-						{isLogin ? "Don't have an account?" : "Already have an account?"}
+						{isLogin ? "Немає облікового запису?" : "Вже є аккаунт?"}
 					</Box>
 					<Box onClick={() => setIsLogin(!isLogin)} color={"blue.500"} cursor={"pointer"}>
-						{isLogin ? "Sign up" : "Log in"}
+						{isLogin ? "Зареєструватися" : "Авторизуватися"}
 					</Box>
 				</Flex>
 			</Box>

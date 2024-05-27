@@ -44,7 +44,7 @@ const CreatePost = () => {
 			setCaption("");
 			setSelectedFile(null);
 		} catch (error) {
-			showToast("Error", error.message, "error");
+			showToast("Помилка", error.message, "error");
 		}
 	};
 
@@ -69,7 +69,7 @@ const CreatePost = () => {
 					onClick={onOpen}
 				>
 					<CreatePostLogo />
-					<Box display={{ base: "none", md: "block" }}>Create</Box>
+					<Box display={{ base: "none", md: "block" }}>Створити</Box>
 				</Flex>
 			</Tooltip>
 
@@ -77,11 +77,11 @@ const CreatePost = () => {
 				<ModalOverlay />
 
 				<ModalContent bg={"black"} border={"1px solid gray"}>
-					<ModalHeader>Create Post</ModalHeader>
+					<ModalHeader>Створити публікацію</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody pb={6}>
 						<Textarea
-							placeholder='Post caption...'
+							placeholder='Підпис до публікації...'
 							value={caption}
 							onChange={(e) => setCaption(e.target.value)}
 						/>
@@ -110,7 +110,7 @@ const CreatePost = () => {
 
 					<ModalFooter>
 						<Button mr={3} onClick={handlePostCreation} isLoading={isLoading}>
-							Post
+							Опублікувати
 						</Button>
 					</ModalFooter>
 				</ModalContent>
@@ -132,7 +132,7 @@ function useCreatePost() {
 
 	const handleCreatePost = async (selectedFile, caption) => {
 		if (isLoading) return;
-		if (!selectedFile) throw new Error("Please select an image");
+		if (!selectedFile) throw new Error("Виберіть зображення");
 		setIsLoading(true);
 		const newPost = {
 			caption: caption,
@@ -159,73 +159,13 @@ function useCreatePost() {
 
 			if (pathname !== "/" && userProfile.uid === authUser.uid) addPost({ ...newPost, id: postDocRef.id });
 
-			showToast("Success", "Post created successfully", "success");
+			showToast("Успіх", "Публікацію створено успішно", "success");
 		} catch (error) {
-			showToast("Error", error.message, "error");
+			showToast("Помилка", error.message, "error");
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
 	return { isLoading, handleCreatePost };
-}
-
-// 1- COPY AND PASTE AS THE STARTER CODE FOR THE CRAETEPOST COMPONENT
-// import { Box, Flex, Tooltip } from "@chakra-ui/react";
-// import { CreatePostLogo } from "../../assets/constants";
-
-// const CreatePost = () => {
-// 	return (
-// 		<>
-// 			<Tooltip
-// 				hasArrow
-// 				label={"Create"}
-// 				placement='right'
-// 				ml={1}
-// 				openDelay={500}
-// 				display={{ base: "block", md: "none" }}
-// 			>
-// 				<Flex
-// 					alignItems={"center"}
-// 					gap={4}
-// 					_hover={{ bg: "whiteAlpha.400" }}
-// 					borderRadius={6}
-// 					p={2}
-// 					w={{ base: 10, md: "full" }}
-// 					justifyContent={{ base: "center", md: "flex-start" }}
-// 				>
-// 					<CreatePostLogo />
-// 					<Box display={{ base: "none", md: "block" }}>Create</Box>
-// 				</Flex>
-// 			</Tooltip>
-// 		</>
-// 	);
-// };
-
-// export default CreatePost;
-
-// 2-COPY AND PASTE FOR THE MODAL
-{
-	/* <Modal isOpen={isOpen} onClose={onClose} size='xl'>
-				<ModalOverlay />
-
-				<ModalContent bg={"black"} border={"1px solid gray"}>
-					<ModalHeader>Create Post</ModalHeader>
-					<ModalCloseButton />
-					<ModalBody pb={6}>
-						<Textarea placeholder='Post caption...' />
-
-						<Input type='file' hidden />
-
-						<BsFillImageFill
-							style={{ marginTop: "15px", marginLeft: "5px", cursor: "pointer" }}
-							size={16}
-						/>
-					</ModalBody>
-
-					<ModalFooter>
-						<Button mr={3}>Post</Button>
-					</ModalFooter>
-				</ModalContent>
-			</Modal> */
 }
